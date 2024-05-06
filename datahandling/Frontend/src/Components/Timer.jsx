@@ -15,17 +15,17 @@ function Timer() {
   const fetchData = async () => {
     try {
       const header = new Headers({ "Access-Control-Allow-Origin": "*" });
-
-      const response = await fetch(`http://localhost:3000/getuser/:${ID}`,  { 
-        headers:{
-          "authorization":`Bearer ${token}`
+  
+      const response = await fetch(`http://localhost:3000/getuser/:${count}`, {
+        headers: {
+          "authorization": `Bearer ${token}`
         },
-       });
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       console.log('hi')
-
+  
       const result = await response.json();
       console.log("res", result);
       setData(result);
@@ -33,6 +33,7 @@ function Timer() {
       console.error("Fetch error:", error);
     }
   };
+  
 
   useEffect(()=>{
     fetchData();
